@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "gql-subscriptions"
-version = "0.0.2"
+version = "0.0.1"
 description = "A Python3.7+ port of Apollo Graphql Subscriptions."
 authors = ["ysun <sunyu418@gmail.com>"]
 license = "MIT"

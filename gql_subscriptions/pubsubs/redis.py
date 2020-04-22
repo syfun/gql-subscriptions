@@ -1,13 +1,15 @@
 import asyncio
 import json
-from typing import Any, Callable, Optional, Dict, Tuple
+from typing import Any, Callable, Dict, Optional, Tuple
 
 import aioredis
+
 from gql_subscriptions.engine import PubSubEngine
 
 
 class RedisPubSub(PubSubEngine):
     """Dumps publish payload, if none, use json.dumps"""
+
     dumps: Callable
     subscriptions: Dict[int, Tuple[str, aioredis.Channel, asyncio.Task]]
     current_sub_id: int = 0
@@ -40,6 +42,7 @@ class RedisPubSub(PubSubEngine):
 
         if not self.redis:
             await self.connect()
+
         (channel,) = await self.redis.subscribe(trigger_name)
         self.current_sub_id += 1
         self.subscriptions[self.current_sub_id] = (

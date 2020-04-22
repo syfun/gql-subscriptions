@@ -55,7 +55,6 @@ class EventEmitter:
             self.queue = asyncio.Queue()
         if not self.run_task:
             self.run_task = asyncio.create_task(self._run())
-            await asyncio.sleep(0.1)
         await self.queue.put({'event': event, 'args': args})
 
 

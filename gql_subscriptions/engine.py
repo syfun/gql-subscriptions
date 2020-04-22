@@ -27,8 +27,7 @@ T = TypeVar('T')
 class PubSubAsyncIterator(AsyncIterator[T]):
     pubsub: PubSubEngine
     running: bool
-    push_queue: asyncio.Queue
-    pull_queue: List[asyncio.Task]
+    queue: asyncio.Queue
     triggers: List[str]
 
     all_subscribed: asyncio.Task = None
@@ -37,8 +36,7 @@ class PubSubAsyncIterator(AsyncIterator[T]):
         self.pubsub = pubsub
         self.running = True
         self.triggers = triggers if isinstance(triggers, List) else [triggers]
-        self.push_queue = asyncio.Queue()
-        self.pull_queue = []
+        self.queue = asyncio.Queue()
 
     def __aiter__(self) -> AsyncIterator[T]:
         return self
@@ -55,11 +53,11 @@ class PubSubAsyncIterator(AsyncIterator[T]):
     async def aclose(self):
         await self.empty_queue()
 
-    async def pull_value(self):
-        return await self.push_queue.get()
+    async def pull_value(self) -> T:
+        return await self.queue.get()
 
     async def push_value(self, event: T) -> None:
-        await self.push_queue.put(event)
+        await self.queue.put(event)
 
     async def subscribe_all(self) -> List[int]:
         return [
