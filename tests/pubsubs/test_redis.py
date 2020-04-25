@@ -26,12 +26,12 @@ class TestRedisPubSub:
 
         await pubsub.subscribe('trigger1', on_message1)
         assert pubsub.current_sub_id == 1
-        assert pubsub.subscriptions[1][0] == 'trigger1'
+        assert pubsub.subscriptions[1] == 'trigger1'
 
         await pubsub.subscribe('trigger1', on_message2)
         assert pubsub.current_sub_id == 2
-        assert pubsub.subscriptions[1][0] == 'trigger1'
-        assert pubsub.subscriptions[2][0] == 'trigger1'
+        assert pubsub.subscriptions[1] == 'trigger1'
+        assert pubsub.subscriptions[2] == 'trigger1'
 
         await pubsub.disconnect()
 
