@@ -40,7 +40,7 @@ schema {
 
 Now, let's create a simple `PubSub` instance - it is simple pubsub implementation, based on `asyncio.Queue`.
 
-```
+```python
 from gql_subscriptions import PubSub
 
 pubsub = PubSub()
@@ -48,7 +48,7 @@ pubsub = PubSub()
 
 Now, implement your Subscriptions type resolver, using the `pubsub.async_iterator` to map the event you need(use [python-gql](https://github.com/syfun/python-gql)):
 
-```
+```python
 from gql_subscriptions import PubSub, subscribe
 
 
@@ -93,7 +93,7 @@ async def something_changed(parent, info) -> typing.AsyncIterator
 
 For example, if `something_changed` would also accept a argument with the ID that is relevant, we can use the following code to filter according to it:
 
-```
+```python
 from gql_subscriptions import PubSub, subscribe, with_filter
 
 
@@ -116,7 +116,7 @@ async def something_changed(parent, info, relevant_id):
 
 You can map multiple channels into the same subscription, for example when there are multiple events that trigger the same subscription in the GraphQL engine.
 
-```
+```python
 from gql_subscriptions import PubSub, subscribe, with_filter
 
 pubsub = PubSub()
@@ -137,7 +137,7 @@ It can be easily replaced with some other implements of [PubSubEngine abstract c
 
 This package contains a `Redis` implements.
 
-```
+```python
 from gql import subscribe
 from gql_subscriptions.pubsubs.redis import RedisPubSub
 
