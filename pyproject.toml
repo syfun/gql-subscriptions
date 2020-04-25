@@ -5,7 +5,7 @@ description = "A Python3.7+ port of Apollo Graphql Subscriptions."
 authors = ["ysun <sunyu418@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-homepage = "github.com/syfun"
+homepage = "https://github.com/syfun/gql-subscriptions"
 
 packages = [
     { include = "gql_subscriptions" }
