@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "gql-subscriptions"
-version = "0.0.2"
+version = "0.0.3"
 description = "A Python3.7+ port of Apollo Graphql Subscriptions."
 authors = ["ysun <sunyu418@gmail.com>"]
 license = "MIT"
@@ -12,10 +12,10 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = ">=3.7"
 typing_extensions = { version =  "^3.7.4", python = "< 3.8" }
 
-aioredis = { version = "^1.3", optional = true }
+aioredis = { version = ">=1.3", optional = true }
 
 [tool.poetry.dev-dependencies]
 black = { version = "*", allow-prereleases = true }
